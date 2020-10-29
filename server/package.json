@@ -1,0 +1,23 @@
+{
+  "name": "aj-listener",
+  "version": "1.0.0",
+  "description": "accelerometer joysitck listener",
+  "main": "main.js",
+  "dependencies": {
+    "bluetooth-serial-port": "^2.2.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheinin/accelerometer-joystick.git"
+  },
+  "author": "Sergei Sheinin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sheinin/accelerometer-joystick/issues"
+  },
+  "homepage": "https://github.com/sheinin/accelerometer-joystick#readme"
+}
