@@ -4,7 +4,9 @@
   "description": "accelerometer joysitck listener",
   "main": "main.js",
   "dependencies": {
-    "bluetooth-serial-port": "^2.2.7"
+    "bluetooth-serial-port": "^2.2.7",
+    "kbm-robot": "0.0.4",
+    "sendkeys-js": "0.0.4"
   },
   "devDependencies": {},
   "scripts": {
