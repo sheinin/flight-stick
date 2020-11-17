@@ -1,5 +1,6 @@
-xdotool key Left
-xdotool key Up
+#xdotool key Left
+xdotool keydown Up
 #echo "key"
-#sleep 0.1
-#./key.sh
+sleep 0.5
+xdotool keyup Up
+./key.sh

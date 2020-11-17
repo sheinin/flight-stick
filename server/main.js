@@ -5,6 +5,8 @@ const server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer()
 const { exec } = require('child_process')
 const key = __dirname + '/key.sh '
 
+const delay = 200
+const variance = 20
 
 let previous = {
 
@@ -16,12 +18,27 @@ let previous = {
 
 server.on('data', function( buffer ) {
 
-    let string = buffer.toString()
+    const string = buffer.toString()
     let { ts, x, y, z} = JSON.parse(string.slice(0, string.indexOf('}') + 1))
 
-    x = Math.round(x)
-    y = Math.round(y)
+    const ax = x / Math.sqrt(x * x + z * z) * 180 / Math.PI - 20
+    const ay = y / Math.sqrt(y * y + z * z) * 180 / Math.PI
+    const dx = Math.round(delay / 100 * (ax > 0 ? Math.min(variance, ax) : Math.max(variance * -1, ax) * -1) / variance * 100)
+    const dy = Math.round(delay / 100 * (ay > 0 ? Math.min(variance, ay) : Math.max(variance * -1, ay) * -1) / variance * 100)
 
+    const xs = dx / 1000
+    const ys = dy / 1000
+    const ud = (ax > 0 ? 'Down' : 'Up')
+    const lr = (ay > 0 ? 'Right' : 'Left')
+
+    exec(key + ud + ' ' + xs)
+    exec(key + lr + ' ' + ys)
+
+    console.log(ud + ': ' + xs, lr +': ' + ys)
+    //x = Math.round(x)
+    //y = Math.round(y)
+
+    /*
     
     if (!previous.ts)
 
@@ -60,7 +77,7 @@ server.on('data', function( buffer ) {
     }
 
     previous = {ts: ts, x: x, y: y}
-    
+    */
 
     
 
