@@ -1,2 +1,2 @@
 # accelerometer-stick
-Project dedicated to controlling PC flight sim with accelerometer on Android device.
+Project dedicated to controlling PC flight sim with Android accelerometer.
