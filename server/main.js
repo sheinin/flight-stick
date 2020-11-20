@@ -1,5 +1,4 @@
-const
-    UUID = '00001101-0000-1000-8000-00805F9B34FB'
+const UUID = '00001101-0000-1000-8000-00805F9B34FB'
 
 const server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer()
 const { exec } = require('child_process')
@@ -9,7 +8,6 @@ const up = __dirname + '/up.sh '
 const key = __dirname + '/key.sh '
 const focus = __dirname + '/key.sh '
 
-//const delay = 40
 const variance = 21
 const threshold = 8
 const alpha = 0.25
