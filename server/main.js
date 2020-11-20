@@ -3,18 +3,20 @@ const
 
 const server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer()
 const { exec } = require('child_process')
+const nav = __dirname + '/nav.sh '
+const down = __dirname + '/down.sh '
+const up = __dirname + '/up.sh '
 const key = __dirname + '/key.sh '
+const focus = __dirname + '/key.sh '
 
-const delay = 38
+//const delay = 40
 const variance = 21
+const threshold = 8
+const alpha = 0.25
+const lowpass = false
 
-let previous = {
-
-    ts: 0,
-    x: 0,
-    y: 0
-
-}
+let xyz
+let ts = 0
 
 server.on('data', function( buffer ) {
 
@@ -39,12 +41,18 @@ server.on('data', function( buffer ) {
 }.bind( this ) )
 
 server.on('disconnected', ()=>console.log('DISCONNECT'))
-server.on('closed', ()=>console.log('CLOSE'))
+server.on('closed', ()=> {
+
+    ts = 0
+    console.log('CLOSE')
+
+})
 server.on('failure', (e)=>console.log('FAIL',e))
 
-server.listen(function (clientAddress) {
+server.listen(clientAddress => {
 
     console.log('CONNECTED # MAC ' + clientAddress)
+    exec(focus)
 
 }, function(error) {
 
@@ -57,7 +65,26 @@ const sensor = {
 
     xyz: data => {
 
-        const { ts, x, y, z } = data
+        let now = new Date()
+
+        let delay = now - ts
+
+        ts = now
+    
+        if (!xyz || !lowpass)
+
+            xyz = data
+
+        else
+
+            for (let i = 0, ln = data.length; i < ln; i += 1 ) {
+
+                xyz[i] = xyz[i] + alpha * (data[i] - xyz[i])
+
+            }
+    
+        const [ x, y, z ] = xyz || data
+
         const ax = x / Math.sqrt(x * x + z * z) * 180 / Math.PI - 20
         const ay = y / Math.sqrt(y * y + z * z) * 180 / Math.PI
 
@@ -72,29 +99,27 @@ const sensor = {
 
         if (ax > variance || ax < variance * -1)
 
-            exec(__dirname + '/down.sh ' + ud)
+            exec(down + ud)
 
-        else
+        else if (dx > threshold)
 
-            exec(key + ud + ' ' + dx / 1000)
+            exec(nav + ud + ' ' + dx / 1000)
 
 
         if (ay > variance || ay < variance * -1)
 
-            exec(__dirname + '/down.sh ' + lr)
+            exec(down + lr)
 
-        else
+        else if (dy > threshold)
 
-            exec(key + lr + ' ' + dy / 1000)
+            exec(nav + lr + ' ' + dy / 1000)
 
-        console.log(ud + ': ' + ax, lr +': ' + ay)
+        //console.log(ud + ': ' + ax, lr +': ' + ay)
 
     },
     
-    key: data => {
-
-        console.log(data)
-
-    }
+    key: data => exec(key + data),
+    down: data => exec(down + data),
+    up: data => exec(up + data),
 
 }
