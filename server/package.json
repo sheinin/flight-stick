@@ -1,12 +1,10 @@
 {
-  "name": "aj-listener",
+  "name": "flightstick-server",
   "version": "1.0.0",
-  "description": "accelerometer joysitck listener",
+  "description": "flight stick server",
   "main": "main.js",
   "dependencies": {
-    "bluetooth-serial-port": "^2.2.7",
-    "kbm-robot": "0.0.4",
-    "sendkeys-js": "0.0.4"
+    "bluetooth-serial-port": "^2.2.7"
   },
   "devDependencies": {},
   "scripts": {
@@ -14,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sheinin/accelerometer-joystick.git"
+    "url": "git+https://github.com/sheinin/flightstick.git"
   },
   "author": "Sergei Sheinin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sheinin/accelerometer-joystick/issues"
+    "url": "https://github.com/sheinin/flightstick/issues"
   },
-  "homepage": "https://github.com/sheinin/accelerometer-joystick#readme"
+  "homepage": "https://github.com/sheinin/flightstick#readme"
 }
