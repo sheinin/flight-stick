@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
