@@ -12,7 +12,7 @@ const key = __dirname + '/key.sh '
 const focus = __dirname + '/focus.sh'
 
 const variance = 21
-const threshold = 8
+const threshold = 5
 
 let ts = 0
 let cal = {
@@ -118,7 +118,7 @@ async function joy(angle, dir, delay) {
 
         let fluct = Math.round(delay / 100 * Math.abs(Math.min(variance, Math.abs(angle))) / variance * 100)
         
-        fluct = fluct - Math.pow(1 / fluct, 5)
+        //fluct = fluct - Math.pow(1 / fluct, 5)
 
         exec(nav + dir + ' ' + fluct / 1000)
 

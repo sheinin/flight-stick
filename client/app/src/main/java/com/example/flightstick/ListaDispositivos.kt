@@ -1,4 +1,4 @@
-package com.codility.accelerometer
+package com.codility.stick
 
 import android.app.Activity
 import android.app.ListActivity
@@ -9,9 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
-import org.w3c.dom.Text
 
 class ListaDispositivos : ListActivity() {
     var myBtAdapter : BluetoothAdapter? = null

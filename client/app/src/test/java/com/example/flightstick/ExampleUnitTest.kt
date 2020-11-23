@@ -1,4 +1,4 @@
-package com.codility.accelerometer
+package com.example.flightstick
 
 import org.junit.Test
 
