@@ -1,8 +1,5 @@
 'use strict'
 
-const UUID = '00001101-0000-1000-8000-00805F9B34FB'
-
-const server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer()
 const { exec } = require('child_process')
 
 const nav = __dirname + '/nav.sh '
@@ -22,54 +19,83 @@ let cal = {
 
 }
 
-server.on('data', function( buffer ) {
 
+const socket = () => {
+        
+    var app = require('http').createServer()
+    var io = require('socket.io')(app)
 
-    const commands = buffer.toString().replace(/\}\{/g, '}~{').split('~')
+    app.listen(3002)
 
-    commands.map(a => {
+    io.on('connection', client => { 
 
-        try {
-
-            const { cmd, data } = JSON.parse(a)
+        client.on('data', message => {
+            console.log(message)
+            
+            const { cmd, data } = JSON.parse(message)
 
             cmd && sensor[cmd](data)
             
-        } catch(e) {
+        })
 
-            console.log('bad packet')
-        
-        }
-        
     })
-    
-}.bind( this ) )
+}
 
-server.on('disconnected', () => console.log('DISCONNECT'))
 
-server.on('closed', () => console.log('CLOSE'))
+const bluetooth = () => {
 
-server.on('failure', e => console.log('FAIL', e))
+    const UUID = '00001101-0000-1000-8000-00805F9B34FB'
+    const server = new(require('bluetooth-serial-port')).BluetoothSerialPortServer()
 
-server.listen(
-    
-    clientAddress => {
 
-        ts = 0
-        exec(focus)
-        console.log('CONNECTED # MAC ' + clientAddress)
+    server.on('data', function( buffer ) {
+
+
+        const commands = buffer.toString().replace(/\}\{/g, '}~{').split('~')
+
+        commands.map(a => {
+
+            try {
+
+                const { cmd, data } = JSON.parse(a)
+
+                cmd && sensor[cmd](data)
+                
+            } catch(e) {
+
+                console.log('bad packet')
+            
+            }
+            
+        })
         
-    },
+    }.bind( this ) )
 
-    e => console.error('Server error:' + e),
+    server.on('disconnected', () => console.log('DISCONNECT'))
 
-    {
-        uuid: UUID,
-        channel: 1
-    }
+    server.on('closed', () => console.log('CLOSE'))
 
-)
+    server.on('failure', e => console.log('FAIL', e))
 
+    server.listen(
+        
+        clientAddress => {
+
+            ts = 0
+            exec(focus)
+            console.log('CONNECTED # MAC ' + clientAddress)
+            
+        },
+
+        e => console.error('Server error:' + e),
+
+        {
+            uuid: UUID,
+            channel: 1
+        }
+
+    )
+}
 
 const sensor = {
 
@@ -124,3 +150,6 @@ async function joy(angle, dir, delay) {
     }
 
 }
+
+
+socket()

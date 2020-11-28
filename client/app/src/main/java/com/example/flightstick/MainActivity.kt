@@ -15,12 +15,14 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import com.codility.stick.ListaDispositivos
 import com.flight.stick.R
-//import androidx.appcompat.app.AppCompatActivity
-//import com.example.flightstick.R
+import io.socket.client.IO
+import io.socket.client.Socket
+import io.socket.engineio.client.transports.WebSocket
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,6 +43,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     var MAC: String? = ""
     var UUID_default : UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
     var Btconexao : ConnectedThread? = null
+    var isWS: Boolean = true
+    var isConnected: Boolean = false
+    lateinit var socket: Socket
 
     lateinit var reading: FloatArray
     var sensitivity: Int = SensorManager.SENSOR_DELAY_GAME
@@ -52,7 +57,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
             reading = event.values
-            send("nav", reading)
+            if (isConnected)
+                send("nav", reading)
         }
     }
 
@@ -67,10 +73,41 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         setContentView(R.layout.activity_main)
 
+
+        val opts = IO.Options()
+        opts.transports = arrayOf(WebSocket.NAME)
+
+        socket = IO.socket("http://192.168.43.116:3002/", opts)
+        /*
+        socket?.on(Socket.EVENT_CONNECT) {
+        }?.on(Socket.EVENT_CONNECTING) {
+        }?.on(Socket.EVENT_CONNECT_TIMEOUT) {
+            Log.d("emit", "TIMEOUT")
+        }?.on(Socket.EVENT_CONNECT_ERROR) {parameters ->
+            for (obj in parameters)
+                Log.v("emit", "ERROR:: $obj")
+            Log.d("emit", "CONNECT ERROR")
+        }?.on(Socket.EVENT_DISCONNECT) { parameters ->
+            for (obj in parameters)
+                Log.v("emit", "ERROR:: $obj")
+            Log.d("emit", "DISCONNECTED")
+        }?.on(Socket.EVENT_PING) { parameters ->
+            for (obj in parameters)
+                Log.v("emit", "PING:: $obj")
+            Log.d("emit", "PING")
+        }
+
+         */
+        socket.connect()
+
+
+
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         myBtadpater  = BluetoothAdapter.getDefaultAdapter()
 
         conectbtn.setOnClickListener {
+            isConnected = !isConnected
+            /*
             if (conexao) {
                 try {
                     socketBt!!.close()
@@ -82,7 +119,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             } else {
                 val abrirLista = Intent(this@MainActivity, ListaDispositivos::class.java)
                 startActivityForResult(abrirLista, nDaConexao)
-            }
+            }*/
         }
 
         keyup.setOnClickListener { send("key", "Page_Up") }
@@ -264,10 +301,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun send(cmd: String, data: FloatArray) {
         if (Btconexao != null)
             Btconexao!!.write(Gson().toJson(XYZ(cmd, data)))
+        if (isWS)
+            socket.emit("data", Gson().toJson(XYZ(cmd, data)))
     }
 
     private fun send(cmd: String, data: String) {
         if (Btconexao != null)
             Btconexao!!.write(Gson().toJson(Command(cmd, data)))
+        if (isWS)
+            socket.emit("data", Gson().toJson(Command(cmd, data)))
     }
 }

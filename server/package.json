@@ -4,7 +4,8 @@
   "description": "flight stick server",
   "main": "main.js",
   "dependencies": {
-    "bluetooth-serial-port": "^2.2.7"
+    "bluetooth-serial-port": "^2.2.7",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {
