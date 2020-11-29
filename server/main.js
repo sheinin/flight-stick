@@ -2,16 +2,20 @@
 
 const { exec } = require('child_process')
 
-const nav = __dirname + '/nav.sh '
-const down = __dirname + '/down.sh '
-const up = __dirname + '/up.sh '
-const key = __dirname + '/key.sh '
-const focus = __dirname + '/focus.sh'
+const keys = {
+    nav: __dirname + '/nav.sh ',
+    down: __dirname + '/down.sh ',
+    up: __dirname + '/up.sh ',
+    key: __dirname + '/key.sh ',
+    focus: __dirname + '/focus.sh'
+}
 
-const variance = 14
+const variance = 10
 const threshold = 4
 
-let ts = 0
+
+let prev
+
 let cal = {
 
     x: 20,
@@ -29,8 +33,15 @@ const socket = () => {
 
     io.on('connection', client => { 
 
+        prev = {
+            delay: 0,
+            ts: 0,
+            dirx: null,
+            diry: null
+        }
+        exec(keys.focus)
+
         client.on('data', message => {
-            console.log(message)
             
             const { cmd, data } = JSON.parse(message)
 
@@ -82,7 +93,8 @@ const bluetooth = () => {
         clientAddress => {
 
             ts = 0
-            exec(focus)
+            prev = Date.now()
+            exec(keys.focus)
             console.log('CONNECTED # MAC ' + clientAddress)
             
         },
@@ -101,11 +113,12 @@ const sensor = {
 
     nav: data => {
 
-        let now = new Date(),
-            delay = now - ts
+        prev.ts = prev.ts || Date.now()
 
-        ts = now
-    
+        const now = Date.now()
+        
+        let delay = now - prev.ts
+
         const [ x, y, z ] = data
 
         const angx = angle(x, z) - cal.x
@@ -113,14 +126,35 @@ const sensor = {
         const dirx = (angx > 0 ? 'Down' : 'Up')
         const diry = (angy > 0 ? 'Right' : 'Left')
 
+        if (prev.ts + prev.delay > now) {
+
+            const diff = prev.ts + prev.delay - now
+            
+            
+            if (delay - diff < 1) {
+                exec(keys.up + prev.dirx)
+                exec(keys.up + prev.diry)
+                
+            } else 
+
+                delay -= diff
+        }
+
         joy(angx, dirx, delay)
         joy(angy, diry, delay)
+
+        prev = {
+            ts: now,
+            delay: delay,
+            dirx: dirx,
+            diry: diry
+        }
         
     },
     
-    key: data => exec(key + data),
-    down: data => exec(down + data),
-    up: data => exec(up + data),
+    key: data => exec(keys.key + data),
+    down: data => exec(keys.down + data),
+    up: data => exec(keys.up + data),
 
     cal: data => {
         
@@ -136,16 +170,19 @@ const angle = (a, b) => a / Math.sqrt(a * a + b * b) * 180 / Math.PI
 
 async function joy(angle, dir, delay) {
 
+
+
+
     if (Math.abs(angle) > variance)
 
-        exec(down + dir)
+        exec(keys.down + dir)
 
     else if (Math.abs(angle) > threshold) {
 
         const x = Math.abs(Math.min(variance, Math.abs(angle)))
-        const fluct = Math.round(delay / 100 * (Math.pow(x, 3) / Math.sqrt(x)) / (Math.pow(variance, 3) / Math.sqrt(variance)) * 100)
+        const fluct = Math.round(delay / 100 * (Math.pow(x, 5) / Math.sqrt(x)) / (Math.pow(variance, 5) / Math.sqrt(variance)) * 100)
 
-        exec(nav + dir + ' ' + fluct / 1000)
+        exec(keys.nav + dir + ' ' + fluct / 1000)
 
     }
 
