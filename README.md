@@ -10,4 +10,4 @@ Translates accelerometer readings into key press durations and sends arrow down/
 
 Connect with Bluetooth or WiFi
 
-[Mobile UI](https://github.com/sheinin/flightstick/blob/main/screenshot.jpg?raw=true)
+![Mobile UI](https://github.com/sheinin/flightstick/blob/main/screenshot.jpg?raw=true)
