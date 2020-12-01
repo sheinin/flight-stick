@@ -32,7 +32,7 @@ const socket = () => {
     app.listen(3002)
 
     io.on('connection', client => { 
-
+console.log('con')
         prev = {
             delay: 0,
             ts: 0,
@@ -171,18 +171,20 @@ const angle = (a, b) => a / Math.sqrt(a * a + b * b) * 180 / Math.PI
 async function joy(angle, dir, delay) {
 
 
-
-
     if (Math.abs(angle) > variance)
 
         exec(keys.down + dir)
 
     else if (Math.abs(angle) > threshold) {
 
+        
         const x = Math.abs(Math.min(variance, Math.abs(angle)))
-        const fluct = Math.round(delay / 100 * (Math.pow(x, 5) / Math.sqrt(x)) / (Math.pow(variance, 5) / Math.sqrt(variance)) * 100)
 
-        exec(keys.nav + dir + ' ' + fluct / 1000)
+        delay = delay * ((Math.pow(x, 5) / Math.sqrt(x)) / (Math.pow(variance, 5) / Math.sqrt(variance)))
+        ///delay += Math.sin(Math.pi*(x / variance))
+        delay /= 1000
+        
+        exec(keys.nav + dir + ' ' + delay)
 
     }
 
@@ -190,3 +192,6 @@ async function joy(angle, dir, delay) {
 
 
 socket()
+
+
+///sin((pi)×(abs(x)/10)) + 50 * ((pow(abs(x), 5) / sqrt(abs(x))) / (pow(10, 5) / sqrt(10)))

@@ -3,6 +3,7 @@
 package com.example.flightstick
 
 import android.annotation.TargetApi
+import android.app.AlertDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
@@ -18,6 +19,10 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.ToggleButton
 import com.codility.stick.ListaDispositivos
 import com.flight.stick.R
 import io.socket.client.IO
@@ -28,6 +33,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 import java.io.OutputStream
+import java.lang.Exception
 import java.util.*
 
 
@@ -39,7 +45,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     var myBtadpater : BluetoothAdapter? = null
     val nDaActivity = 0
     val nDaConexao = 1
-    var conexao = false
     var MAC: String? = ""
     var UUID_default : UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb")
     var Btconexao : ConnectedThread? = null
@@ -74,52 +79,95 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setContentView(R.layout.activity_main)
 
 
-        val opts = IO.Options()
-        opts.transports = arrayOf(WebSocket.NAME)
 
-        socket = IO.socket("http://192.168.43.116:3002/", opts)
-        /*
-        socket?.on(Socket.EVENT_CONNECT) {
-        }?.on(Socket.EVENT_CONNECTING) {
-        }?.on(Socket.EVENT_CONNECT_TIMEOUT) {
-            Log.d("emit", "TIMEOUT")
-        }?.on(Socket.EVENT_CONNECT_ERROR) {parameters ->
-            for (obj in parameters)
-                Log.v("emit", "ERROR:: $obj")
-            Log.d("emit", "CONNECT ERROR")
-        }?.on(Socket.EVENT_DISCONNECT) { parameters ->
-            for (obj in parameters)
-                Log.v("emit", "ERROR:: $obj")
-            Log.d("emit", "DISCONNECTED")
-        }?.on(Socket.EVENT_PING) { parameters ->
-            for (obj in parameters)
-                Log.v("emit", "PING:: $obj")
-            Log.d("emit", "PING")
-        }
-
-         */
-        socket.connect()
 
 
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-        myBtadpater  = BluetoothAdapter.getDefaultAdapter()
 
-        conectbtn.setOnClickListener {
-            isConnected = !isConnected
-            /*
-            if (conexao) {
-                try {
-                    socketBt!!.close()
-                    conexao = false
-                    conectbtn.text = "connect"
-                } catch (erro: IOException) {
+        val toggle: ToggleButton = findViewById(R.id.onoff)
+        toggle.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+
+                if (isWS) {
+
+                    val context = this
+                    val builder = AlertDialog.Builder(context)
+                    val view = layoutInflater.inflate(R.layout.prompts, null)
+                    val categoryEditText = view.findViewById(R.id.socketIP) as EditText
+
+                    builder.setTitle("Server Address")
+                    builder.setView(view)
+                    builder.setPositiveButton(android.R.string.ok) { dialog, p1 ->
+                        val socketIP = categoryEditText.text.toString()
+                        val opts = IO.Options()
+                        opts.transports = arrayOf(WebSocket.NAME)
+                        socket = IO.socket(socketIP, opts)
+                        Log.d("emit", socketIP)
+                        socket?.on(Socket.EVENT_CONNECT) {
+                            Log.d("emit", "connected")
+                            isConnected = true
+                        }?.on(Socket.EVENT_DISCONNECT) {parameters ->
+                            isConnected = false
+                           // toggle.isChecked = false
+                            Log.d("emit", "dis")
+                            for (obj in parameters)
+                                Log.v("emit", "ERROR:: $obj")
+                        }?.on(Socket.EVENT_CONNECTING) {
+                            Log.d("emit", "CONNECTING")
+                        }?.on(Socket.EVENT_CONNECT_TIMEOUT) {
+                            Log.d("emit", "TIMEOUT")
+                        }?.on(Socket.EVENT_CONNECT_ERROR) {parameters ->
+                            for (obj in parameters)
+                                Log.v("emit", "ERROR:: $obj")
+                            Log.d("emit", "CONNECT ERROR")
+                        }?.on(Socket.EVENT_PING) { parameters ->
+                            for (obj in parameters)
+                                Log.v("emit", "PING:: $obj")
+                            Log.d("emit", "PING")
+                        }
+                        socket.connect()
+                        dialog.dismiss()
+
+                    }
+
+                    //builder.setNegativeButton(android.R.string.cancel) { dialog, p1 ->
+                      //  dialog.cancel()
+                    //}
+
+                    builder.show();
+
+                } else {
+
+                    myBtadpater = BluetoothAdapter.getDefaultAdapter()
+                    startActivityForResult(
+                        Intent(this@MainActivity, ListaDispositivos::class.java),
+                        nDaConexao
+                    )
 
                 }
+
             } else {
-                val abrirLista = Intent(this@MainActivity, ListaDispositivos::class.java)
-                startActivityForResult(abrirLista, nDaConexao)
-            }*/
+
+                isConnected = false
+
+                if (isWS)
+
+                    socket.disconnect()
+
+                else {
+
+                    try {
+                        socketBt!!.close()
+                    } catch (error: Exception) {}
+
+                }
+
+            }
+
+
+
         }
 
         keyup.setOnClickListener { send("key", "Page_Up") }
@@ -192,6 +240,24 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             }
             v?.onTouchEvent(event) ?: true
         }
+
+        val radioGroup = findViewById<RadioGroup>(R.id.refresh)
+        radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
+            override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+
+                isConnected = false
+                toggle.isChecked = false
+
+                val rb: RadioButton = findViewById(checkedId) as RadioButton
+
+                isWS = rb.text == "wifi"
+
+            }
+
+
+
+        })
+
 /*
         val radioGroup = findViewById<RadioGroup>(R.id.refresh)
         radioGroup.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
@@ -256,7 +322,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager!!.unregisterListener(this)
     }
 
-    // ->
     @TargetApi(23)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -274,12 +339,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                         val myBtDevice: BluetoothDevice = myBtadpater!!.getRemoteDevice(MAC)
                         socketBt = myBtDevice.createRfcommSocketToServiceRecord(UUID_default)
                         socketBt!!.connect()
-                        conexao = true
                         Btconexao = ConnectedThread()
-                        conectbtn.text = "disconnect"
+                        isConnected = true
                         send("cal", reading)
                     } catch (error: IOException) {
-                        conexao = false
+                        isConnected = false
                     }
                 }
             }

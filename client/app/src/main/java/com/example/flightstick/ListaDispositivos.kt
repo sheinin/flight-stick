@@ -30,7 +30,6 @@ class ListaDispositivos : ListActivity() {
         super.onListItemClick(l, v, position, id)
 
         val Nome = listView.getItemAtPosition(position) as String
-        //Toast.makeText(applicationContext, Nome, Toast.LENGTH_LONG).show()
         var endercoMacsub = Nome.subSequence(Nome.indexOf("\n")+2, Nome.length).toString()
         Toast.makeText(applicationContext, endercoMacsub, Toast.LENGTH_LONG).show()
         val enviarMac : Intent = Intent()

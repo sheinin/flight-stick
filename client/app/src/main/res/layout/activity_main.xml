@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codility.stick.MainActivity"
+    tools:context="com.example.flightstick.MainActivity"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -149,16 +149,47 @@
                 android:gravity="bottom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/conectbtn"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="connect"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/refresh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checkedButton="@+id/normal"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/normal"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="wifi" />
+
+                        <RadioButton
+                            android:id="@+id/game"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="bt" />
+
+                    </RadioGroup>
+
+                    <ToggleButton
+                        android:id="@+id/onoff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:textOff="OFF"
+                        android:textOn="ON"/>
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/calibratebtn"
@@ -281,10 +312,11 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="right"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/keyup"
