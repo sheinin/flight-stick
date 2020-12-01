@@ -10,4 +10,4 @@ Translates accelerometer readings into key press durations and sends arrow down/
 
 Connect with Bluetooth or WiFi
 
-[PC Flight Sim](https://github.com/sheinin/flightstick/raw/master/screenshot.jpg)]
+[Mobile UI](https://github.com/sheinin/flightstick/blob/main/screenshot.jpg?raw=true)
