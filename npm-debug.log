@@ -1,0 +1,319 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/gonki/.nvm/versions/io.js/v1.1.0/bin/iojs',
+1 verbose cli   '/home/gonki/.nvm/versions/io.js/v1.1.0/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'bluetooth-serial-port' ]
+2 info using npm@2.4.1
+3 info using node@v1.1.0
+4 warn package.json @ No description
+5 warn package.json @ No repository field.
+6 warn package.json @ No README data
+7 warn package.json uglify-js@2.3.0 'repositories' (plural) Not supported. Please pick one as the 'repository' field
+8 silly cache add args [ 'bluetooth-serial-port@^3.0.2', null ]
+9 verbose cache add spec bluetooth-serial-port@^3.0.2
+10 silly cache add parsed spec { raw: 'bluetooth-serial-port@^3.0.2',
+10 silly cache add   scope: null,
+10 silly cache add   name: 'bluetooth-serial-port',
+10 silly cache add   rawSpec: '^3.0.2',
+10 silly cache add   spec: '>=3.0.2 <4.0.0',
+10 silly cache add   type: 'range' }
+11 verbose addNamed bluetooth-serial-port@>=3.0.2 <4.0.0
+12 silly addNamed semver.valid null
+13 silly addNamed semver.validRange >=3.0.2 <4.0.0
+14 silly addNameRange { name: 'bluetooth-serial-port',
+14 silly addNameRange   range: '>=3.0.2 <4.0.0',
+14 silly addNameRange   hasData: false }
+15 silly mapToRegistry name bluetooth-serial-port
+16 silly mapToRegistry using default registry
+17 silly mapToRegistry registry https://registry.npmjs.org/
+18 silly mapToRegistry uri https://registry.npmjs.org/bluetooth-serial-port
+19 verbose addNameRange registry:https://registry.npmjs.org/bluetooth-serial-port not in flight; fetching
+20 verbose request uri https://registry.npmjs.org/bluetooth-serial-port
+21 verbose request no auth needed
+22 info attempt registry request try #1 at 12:02:39
+23 verbose request id 3891de70e5b30192
+24 verbose etag W/"c54d651d72d10e9156359bb3d9f9aa9f"
+25 verbose lastModified Thu, 26 Jan 2023 13:15:08 GMT
+26 http request GET https://registry.npmjs.org/bluetooth-serial-port
+27 http 304 https://registry.npmjs.org/bluetooth-serial-port
+28 silly get cb [ 304,
+28 silly get   { date: 'Fri, 09 Jun 2023 06:17:39 GMT',
+28 silly get     connection: 'keep-alive',
+28 silly get     'cf-ray': '7d4740b40d8b24a0-KTM',
+28 silly get     'cf-cache-status': 'HIT',
+28 silly get     age: '106',
+28 silly get     'cache-control': 'public, max-age=300',
+28 silly get     etag: '"c54d651d72d10e9156359bb3d9f9aa9f"',
+28 silly get     'last-modified': 'Thu, 26 Jan 2023 13:15:08 GMT',
+28 silly get     vary: 'Accept-Encoding',
+28 silly get     'x-amz-replication-status': 'COMPLETED',
+28 silly get     'x-amz-server-side-encryption': 'AES256',
+28 silly get     server: 'cloudflare' } ]
+29 verbose etag https://registry.npmjs.org/bluetooth-serial-port from cache
+30 verbose get saving bluetooth-serial-port to /home/gonki/.npm/registry.npmjs.org/bluetooth-serial-port/.cache.json
+31 silly addNameRange number 2 { name: 'bluetooth-serial-port',
+31 silly addNameRange   range: '>=3.0.2 <4.0.0',
+31 silly addNameRange   hasData: true }
+32 silly addNameRange versions [ 'bluetooth-serial-port',
+32 silly addNameRange   [ '0.1.0',
+32 silly addNameRange     '0.1.1',
+32 silly addNameRange     '0.1.3',
+32 silly addNameRange     '0.1.4',
+32 silly addNameRange     '0.1.5',
+32 silly addNameRange     '0.1.6',
+32 silly addNameRange     '0.1.7',
+32 silly addNameRange     '0.1.8',
+32 silly addNameRange     '0.1.9',
+32 silly addNameRange     '0.1.10',
+32 silly addNameRange     '0.1.11',
+32 silly addNameRange     '0.1.12',
+32 silly addNameRange     '0.2.0',
+32 silly addNameRange     '0.2.1',
+32 silly addNameRange     '1.0.0',
+32 silly addNameRange     '1.0.1',
+32 silly addNameRange     '1.0.2',
+32 silly addNameRange     '1.0.3',
+32 silly addNameRange     '1.0.4',
+32 silly addNameRange     '1.0.5',
+32 silly addNameRange     '1.1.1',
+32 silly addNameRange     '1.1.2',
+32 silly addNameRange     '1.1.3',
+32 silly addNameRange     '1.1.4',
+32 silly addNameRange     '1.2.0',
+32 silly addNameRange     '1.2.1',
+32 silly addNameRange     '1.2.2',
+32 silly addNameRange     '1.2.3',
+32 silly addNameRange     '1.2.4',
+32 silly addNameRange     '1.2.5',
+32 silly addNameRange     '1.2.6',
+32 silly addNameRange     '1.3.1',
+32 silly addNameRange     '2.0.0',
+32 silly addNameRange     '2.1.0',
+32 silly addNameRange     '2.1.1',
+32 silly addNameRange     '2.1.2',
+32 silly addNameRange     '2.1.3',
+32 silly addNameRange     '2.1.4',
+32 silly addNameRange     '2.1.5',
+32 silly addNameRange     '2.1.6',
+32 silly addNameRange     '2.1.7',
+32 silly addNameRange     '2.2.0',
+32 silly addNameRange     '2.2.1',
+32 silly addNameRange     '2.2.2',
+32 silly addNameRange     '2.2.3',
+32 silly addNameRange     '2.2.4',
+32 silly addNameRange     '2.2.5',
+32 silly addNameRange     '2.2.6',
+32 silly addNameRange     '2.2.7',
+32 silly addNameRange     '3.0.0',
+32 silly addNameRange     '3.0.1',
+32 silly addNameRange     '3.0.2' ] ]
+33 verbose addNamed bluetooth-serial-port@3.0.2
+34 silly addNamed semver.valid 3.0.2
+35 silly addNamed semver.validRange 3.0.2
+36 silly mapToRegistry name bluetooth-serial-port
+37 silly mapToRegistry using default registry
+38 silly mapToRegistry registry https://registry.npmjs.org/
+39 silly mapToRegistry uri https://registry.npmjs.org/bluetooth-serial-port
+40 verbose addRemoteTarball https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz not in flight; adding
+41 verbose addRemoteTarball [ 'https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz',
+41 verbose addRemoteTarball   '7754f73818ede456f608f7daf064292f01d5d790' ]
+42 info retry fetch attempt 1 at 12:02:39
+43 info attempt registry request try #1 at 12:02:39
+44 http fetch GET https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz
+45 http fetch 200 https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz
+46 silly fetchAndShaCheck shasum 7754f73818ede456f608f7daf064292f01d5d790
+47 verbose addTmpTarball /tmp/npm-33367-a1c15c7e/registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz not in flight; adding
+48 verbose addTmpTarball already have metadata; skipping unpack for bluetooth-serial-port@3.0.2
+49 silly cache afterAdd bluetooth-serial-port@3.0.2
+50 verbose afterAdd /home/gonki/.npm/bluetooth-serial-port/3.0.2/package/package.json not in flight; writing
+51 verbose afterAdd /home/gonki/.npm/bluetooth-serial-port/3.0.2/package/package.json written
+52 silly install resolved [ { name: 'bluetooth-serial-port',
+52 silly install resolved     version: '3.0.2',
+52 silly install resolved     description: 'Bluetooth serial port communication for Node.js',
+52 silly install resolved     author: { name: 'Eelco Cramer', email: 'eelco@hailendal.org' },
+52 silly install resolved     keywords: [ 'bluetooth', 'serial port', 'rfcomm', 'linux', 'windows' ],
+52 silly install resolved     homepage: 'https://github.com/eelcocramer/node-bluetooth-serial-port',
+52 silly install resolved     bugs: { url: 'https://github.com/eelcocramer/node-bluetooth-serial-port/issues' },
+52 silly install resolved     repository:
+52 silly install resolved      { type: 'git',
+52 silly install resolved        url: 'git+https://github.com/eelcocramer/node-bluetooth-serial-port.git' },
+52 silly install resolved     directories: { lib: './lib' },
+52 silly install resolved     main: './lib/bluetooth-serial-port.js',
+52 silly install resolved     types: './lib/bluetooth-serial-port.d.ts',
+52 silly install resolved     os: [ 'linux', 'win32' ],
+52 silly install resolved     dependencies:
+52 silly install resolved      { bindings: '1.5.x',
+52 silly install resolved        nan: '2.17.x',
+52 silly install resolved        stable: '^0.1.8',
+52 silly install resolved        '@types/node': '^18.0.0' },
+52 silly install resolved     optionalDependencies: { '@types/node': '^18.0.0' },
+52 silly install resolved     engines: { node: '>= 16.x', npm: '>= 8.x' },
+52 silly install resolved     scripts:
+52 silly install resolved      { install: 'node-gyp configure build',
+52 silly install resolved        'install-debug': 'node-gyp configure build --debug' },
+52 silly install resolved     license: 'MIT',
+52 silly install resolved     contributors:
+52 silly install resolved      [ [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object],
+52 silly install resolved        [Object] ],
+52 silly install resolved     gitHead: 'a76ad601a427e54e4443b8d75237c61e7f17e984',
+52 silly install resolved     _id: 'bluetooth-serial-port@3.0.2',
+52 silly install resolved     _nodeVersion: '16.19.0',
+52 silly install resolved     _npmVersion: '8.19.3',
+52 silly install resolved     dist:
+52 silly install resolved      { integrity: 'sha512-gvxrOoL4POPz7Vd3FUPkVqu3jkR7iAnBfmpSA7HzZ4FTfOki6SEndj8KNYW9Ghqbdn75oXREB7KpN8MWiY4G3A==',
+52 silly install resolved        shasum: '7754f73818ede456f608f7daf064292f01d5d790',
+52 silly install resolved        tarball: 'https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz',
+52 silly install resolved        fileCount: 65,
+52 silly install resolved        unpackedSize: 4244084,
+52 silly install resolved        signatures: [Object],
+52 silly install resolved        'npm-signature': '-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJj0nzaACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmrzkBAAl99U5Xi3EPnkRAaFp673vwO0fb7+4ksGwVIVhcfGNn1Cg/3V\r\n2IEAsKwwZ2LUqTWSZmFqrx6zUAIenSRnTMUe3vubpbYwhB6VJt5D46L0hRAC\r\nCrUpMSHli3qTEL80NXuS3i8mhvUz9FNo0IeSx6vu5hiTzOC+5iegxjYmKEfA\r\n3bOmsftlhU7+GLCGqQFf6MFz/BnoPQgb0qKdcNd0foXtMGL4MoXNXhHmSjMC\r\nvd/lryWyDwGStPuhVpfbcnpDHrG+m1h3m7WLo1FNVmdNfAeKgEqAyKJo3609\r\n51PQUKtCKJfi7iR+WL304g4ylrnMkXcNyslT09t9FIMkm+QUwP9cmhtmvo53\r\nNUoCWtKNYbsdUpsSA4Bypf9AF8NbLyDd5paRTKOvpJlFY5Hh3IcUd92dPh6q\r\nWqkpmoBpprf6AG4gSoto0CXMO9BT536L/tBSEAiMIcmYAmmTPkhG0M6ecR2d\r\nSjp2KvfTqWxgSa5RXZ2d3ByxapSi20itLA6s1Jd7XPkfS1MkSLS7cVtPLqt7\r\nAomZZxTRFQRKLk7XLN47alHawaT4FOom08BD8Sh/wtv+0pnbKWa51fqnmn0y\r\nqAlM8nzLm+YEaQ2It57/Dq9ua3QA42Ljt8B1y2bd9SWUxofbcgctQGjvtEGm\r\nPkYOmHTIVMBNxsR1EvC+WpUYoGxktzv1sgs=\r\n=yqdl\r\n-----END PGP SIGNATURE-----\r\n' },
+52 silly install resolved     _npmUser: { name: 'eelco', email: 'eelco@hailendal.org' },
+52 silly install resolved     maintainers: [ [Object] ],
+52 silly install resolved     _npmOperationalInternal:
+52 silly install resolved      { host: 's3://npm-registry-packages',
+52 silly install resolved        tmp: 'tmp/bluetooth-serial-port_3.0.2_1674738906117_0.5695487657530531' },
+52 silly install resolved     _hasShrinkwrap: false,
+52 silly install resolved     _shasum: '7754f73818ede456f608f7daf064292f01d5d790',
+52 silly install resolved     _resolved: 'https://registry.npmjs.org/bluetooth-serial-port/-/bluetooth-serial-port-3.0.2.tgz',
+52 silly install resolved     _from: 'bluetooth-serial-port@>=3.0.2 <4.0.0' } ]
+53 info install bluetooth-serial-port@3.0.2 into /home/gonki/repo
+54 info installOne bluetooth-serial-port@3.0.2
+55 verbose installOne of bluetooth-serial-port to /home/gonki/repo not in flight; installing
+56 verbose lock using /home/gonki/.npm/_locks/bluetooth-serial-port-a94cef473c013ec7.lock for /home/gonki/repo/node_modules/bluetooth-serial-port
+57 warn engine bluetooth-serial-port@3.0.2: wanted: {"node":">= 16.x","npm":">= 8.x"} (current: {"node":"1.1.0","npm":"2.4.1"})
+58 silly install write writing bluetooth-serial-port 3.0.2 to /home/gonki/repo/node_modules/bluetooth-serial-port
+59 silly cache addNamed cb bluetooth-serial-port@3.0.2
+60 verbose unbuild node_modules/bluetooth-serial-port
+61 info preuninstall bluetooth-serial-port@3.0.2
+62 info uninstall bluetooth-serial-port@3.0.2
+63 verbose unbuild rmStuff bluetooth-serial-port@3.0.2 from /home/gonki/repo/node_modules
+64 info postuninstall bluetooth-serial-port@3.0.2
+65 verbose gentlyRm vacuuming /home/gonki/repo/node_modules/bluetooth-serial-port
+66 silly gentlyRm purging /home/gonki/repo/node_modules/bluetooth-serial-port
+67 silly gentlyRm quitting because other entries in /home/gonki/repo/node_modules
+68 verbose tar unpack /home/gonki/.npm/bluetooth-serial-port/3.0.2/package.tgz
+69 verbose tar unpacking to /home/gonki/repo/node_modules/bluetooth-serial-port
+70 verbose gentlyRm vacuuming /home/gonki/repo/node_modules/bluetooth-serial-port
+71 silly gunzTarPerm modes [ '755', '644' ]
+72 silly gunzTarPerm extractEntry Dockerfile
+73 silly gunzTarPerm extractEntry qemu-arm-static
+74 silly gunzTarPerm extractEntry Dockerfile.bk
+75 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv.h.blob
+76 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@darwin.h.blob
+77 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@errno.h.blob
+78 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@threadpool.h.blob
+79 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@unix.h.blob
+80 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@version.h.blob
+81 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@DeviceINQ.h.blob
+82 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@BluetoothSerialPort.cc.blob
+83 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@BTSerialPortBinding.cc.blob
+84 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@DeviceINQ.cc.blob
+85 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@windows@BluetoothHelpers.h.blob
+86 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@windows@DeviceINQ.cc.blob
+87 silly gunzTarPerm extractEntry src/macos/pipe.c
+88 silly gunzTarPerm extractEntry src/windows/BluetoothHelpers.cc
+89 silly gunzTarPerm extractEntry src/linux/BluetoothSerialPort.cc
+90 silly gunzTarPerm extractEntry src/windows/BluetoothSerialPort.cc
+91 silly gunzTarPerm extractEntry src/linux/BluetoothSerialPortServer.cc
+92 silly gunzTarPerm extractEntry src/linux/BTSerialPortBinding.cc
+93 silly gunzTarPerm extractEntry src/windows/BTSerialPortBinding.cc
+94 silly gunzTarPerm extractEntry src/linux/BTSerialPortBindingServer.cc
+95 silly gunzTarPerm extractEntry src/linux/DeviceINQ.cc
+96 silly gunzTarPerm extractEntry src/windows/DeviceINQ.cc
+97 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@BluetoothSerialPort.cc
+98 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@BTSerialPortBinding.cc
+99 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@linux@DeviceINQ.cc
+100 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@windows@DeviceINQ.cc
+101 silly gunzTarPerm extractEntry binding.gyp
+102 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv.h
+103 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@darwin.h
+104 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@errno.h
+105 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@threadpool.h
+106 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@unix.h
+107 silly gunzTarPerm extractEntry .ccls-cache/@@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/@usr@local@Cellar@libuv@1.31.0@include@uv@version.h
+108 silly gunzTarPerm extractEntry src/macos/BluetoothDeviceResources.h
+109 silly gunzTarPerm extractEntry src/windows/BluetoothHelpers.h
+110 silly gunzTarPerm extractEntry src/macos/BluetoothWorker.h
+111 silly gunzTarPerm extractEntry src/BTSerialPortBinding.h
+112 silly gunzTarPerm extractEntry src/BTSerialPortBindingServer.h
+113 silly gunzTarPerm extractEntry src/DeviceINQ.h
+114 silly gunzTarPerm extractEntry src/ngx-queue.h
+115 silly gunzTarPerm extractEntry src/macos/pipe.h
+116 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@DeviceINQ.h
+117 silly gunzTarPerm extractEntry .ccls-cache/@Users@eelco@Projects@Figaro@workspace@node-bluetooth-serial-port/src@windows@BluetoothHelpers.h
+118 silly gunzTarPerm extractEntry examples/async.js
+119 silly gunzTarPerm extractEntry lib/bluetooth-serial-port.js
+120 silly gunzTarPerm extractEntry lib/device-inquiry.js
+121 silly gunzTarPerm extractEntry test/index.js
+122 silly gunzTarPerm extractEntry examples/paired.js
+123 silly gunzTarPerm extractEntry examples/sync.js
+124 silly gunzTarPerm extractEntry package.json
+125 silly gunzTarPerm extractEntry LICENSE.md
+126 silly gunzTarPerm extractEntry README.md
+127 silly gunzTarPerm extractEntry RELEASE_NOTES.md
+128 silly gunzTarPerm extractEntry src/macos/BluetoothDeviceResources.mm
+129 silly gunzTarPerm extractEntry src/macos/BluetoothSerialPort.mm
+130 silly gunzTarPerm extractEntry src/macos/BluetoothWorker.mm
+131 silly gunzTarPerm extractEntry src/macos/BTSerialPortBinding.mm
+132 silly gunzTarPerm extractEntry src/macos/DeviceINQ.mm
+133 silly gunzTarPerm extractEntry lib/bluetooth-serial-port.d.ts
+134 silly gunzTarPerm extractEntry appveyor.yml
+135 silly gunzTarPerm extractEntry .circleci/config.yml
+136 silly gunzTarPerm extractEntry .github/dependabot.yml
+137 info preinstall bluetooth-serial-port@3.0.2
+138 silly install resolved []
+139 verbose about to build /home/gonki/repo/node_modules/bluetooth-serial-port
+140 info build /home/gonki/repo/node_modules/bluetooth-serial-port
+141 verbose linkStuff [ false, false, false, '/home/gonki/repo/node_modules' ]
+142 info linkStuff bluetooth-serial-port@3.0.2
+143 verbose linkBins bluetooth-serial-port@3.0.2
+144 verbose linkMans bluetooth-serial-port@3.0.2
+145 verbose rebuildBundles bluetooth-serial-port@3.0.2
+146 info install bluetooth-serial-port@3.0.2
+147 verbose unsafe-perm in lifecycle true
+148 info bluetooth-serial-port@3.0.2 Failed to exec install script
+149 verbose unlock done using /home/gonki/.npm/_locks/bluetooth-serial-port-a94cef473c013ec7.lock for /home/gonki/repo/node_modules/bluetooth-serial-port
+150 verbose stack Error: bluetooth-serial-port@3.0.2 install: `node-gyp configure build`
+150 verbose stack Exit status 1
+150 verbose stack     at EventEmitter.<anonymous> (/home/gonki/.nvm/versions/io.js/v1.1.0/lib/node_modules/npm/lib/utils/lifecycle.js:213:16)
+150 verbose stack     at EventEmitter.emit (events.js:100:17)
+150 verbose stack     at ChildProcess.<anonymous> (/home/gonki/.nvm/versions/io.js/v1.1.0/lib/node_modules/npm/lib/utils/spawn.js:14:12)
+150 verbose stack     at ChildProcess.emit (events.js:100:17)
+150 verbose stack     at maybeClose (child_process.js:981:16)
+150 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1053:5)
+151 verbose pkgid bluetooth-serial-port@3.0.2
+152 verbose cwd /home/gonki/repo/flight-stick
+153 error Linux 6.3.5-100.fc37.x86_64
+154 error argv "/home/gonki/.nvm/versions/io.js/v1.1.0/bin/iojs" "/home/gonki/.nvm/versions/io.js/v1.1.0/bin/npm" "install" "--save" "bluetooth-serial-port"
+155 error node v1.1.0
+156 error npm  v2.4.1
+157 error code ELIFECYCLE
+158 error bluetooth-serial-port@3.0.2 install: `node-gyp configure build`
+158 error Exit status 1
+159 error Failed at the bluetooth-serial-port@3.0.2 install script 'node-gyp configure build'.
+159 error This is most likely a problem with the bluetooth-serial-port package,
+159 error not with npm itself.
+159 error Tell the author that this fails on your system:
+159 error     node-gyp configure build
+159 error You can get their info via:
+159 error     npm owner ls bluetooth-serial-port
+159 error There is likely additional logging output above.
+160 verbose exit [ 1, true ]
+161 verbose unbuild node_modules/bluetooth-serial-port
+162 info preuninstall bluetooth-serial-port@3.0.2
+163 info uninstall bluetooth-serial-port@3.0.2
+164 verbose unbuild rmStuff bluetooth-serial-port@3.0.2 from /home/gonki/repo/node_modules
+165 info postuninstall bluetooth-serial-port@3.0.2
+166 verbose gentlyRm vacuuming /home/gonki/repo/node_modules/bluetooth-serial-port
+167 silly gentlyRm purging /home/gonki/repo/node_modules/bluetooth-serial-port
+168 silly gentlyRm quitting because other entries in /home/gonki/repo/node_modules

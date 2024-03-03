@@ -14,8 +14,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -23,6 +21,7 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.ToggleButton
+import androidx.appcompat.app.AppCompatActivity
 import com.codility.stick.ListaDispositivos
 import com.flight.stick.R
 import io.socket.client.IO
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(s: Sensor?, i: Int) {
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onSensorChanged(event: SensorEvent?) {
         if (event!!.sensor.type == Sensor.TYPE_ACCELEROMETER) {
             reading = event.values
@@ -68,7 +67,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
