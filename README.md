@@ -5,7 +5,10 @@ Wireless Android controller for Linux PC flight simulators.
 Translates accelerometer readings into key press durations and sends arrow down/up commands using *xdotool* utility.
 
 
-[![FLIGHT STICK REMOTE](https://img.youtube.com/vi/CsC1W-kfL1Q/0.jpg)](https://img.youtube.com/vi/CsC1W-kfL1Q/0.jpg "https://img.youtube.com/vi/CsC1W-kfL1Q/0.jpg")
+[![FLIGHT STICK REMOTE](https://img.youtube.com/vi/CsC1W-kfL1Q/0.jpg)](https://youtu.be/CsC1W-kfL1Q "https://youtu.be/CsC1W-kfL1Q")
+
+
+[FLIGHT STICK REMOTE DEMO](https://youtu.be/CsC1W-kfL1Q)
 
 
 Connect with Bluetooth or WiFi
